@@ -1,0 +1,147 @@
+
+.auth-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(34, 34, 59, 0.32);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.auth-modal {
+  background: var(--sunat-white);
+  border-radius: 18px;
+  box-shadow: 0 8px 32px 0 rgba(34,34,59,0.18);
+  padding: 32px 32px 24px 32px;
+  width: 100%;
+  max-width: 420px;
+  border: 1.5px solid var(--sunat-gray-border);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+[data-theme='dark'] .auth-modal {
+  background: var(--sunat-gray-dark);
+  border: 1.5px solid #232a4d;
+  color: var(--sunat-white);
+}
+
+.auth-modal h2 {
+  font-size: 2.1rem;
+  font-weight: 700;
+  color: var(--sunat-blue-dark);
+  margin: 0 0 24px 0;
+  letter-spacing: 0.5px;
+  text-align: center;
+}
+[data-theme='dark'] .auth-modal h2 {
+  color: var(--sunat-blue-light);
+}
+
+.auth-modal .input-group {
+  width: 100%;
+  margin-bottom: 18px;
+  display: flex;
+  flex-direction: column;
+}
+.auth-modal label {
+  font-size: 0.95em;
+  color: var(--sunat-blue);
+  font-weight: 600;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+[data-theme='dark'] .auth-modal label {
+  color: var(--sunat-blue-light);
+}
+.auth-modal input {
+  border: 1.5px solid var(--sunat-gray-border);
+  border-radius: 8px;
+  padding: 0.8em 1em;
+  font-size: 1em;
+  background: var(--sunat-white);
+  color: var(--sunat-black);
+  transition: all 0.2s ease-in-out;
+  width: 100%;
+  max-width: 420px;
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
+  outline: none;
+  min-width: 0;
+}
+[data-theme='dark'] .auth-modal input {
+  background: #181b24;
+  color: var(--sunat-white);
+  border-color: #3b4671;
+}
+.auth-modal input:focus {
+  border-color: var(--sunat-blue);
+  box-shadow: 0 0 0 3px rgba(57, 73, 171, 0.2);
+}
+
+.auth-modal .modal-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 18px;
+  margin-top: 24px;
+  width: 100%;
+}
+.auth-modal .modal-buttons button {
+  padding: 0.9em 2em;
+  font-size: 1em;
+  font-weight: 600;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.auth-modal .modal-buttons .cancel {
+  background: #E0E0E0;
+  color: #333;
+  border: 1px solid #ccc;
+}
+.auth-modal .modal-buttons .cancel:hover {
+  background: #d4d4d4;
+  border-color: #bbb;
+}
+[data-theme='dark'] .auth-modal .modal-buttons .cancel {
+  background: #4a5588;
+  color: var(--sunat-white);
+  border-color: #5c6bc0;
+}
+[data-theme='dark'] .auth-modal .modal-buttons .cancel:hover {
+  background: #5c6bc0;
+}
+.auth-modal .modal-buttons .confirm {
+  background: var(--sunat-blue);
+  color: var(--sunat-white);
+}
+.auth-modal .modal-buttons .confirm:hover,
+.auth-modal .modal-buttons .confirm:focus {
+  background: var(--sunat-blue-dark);
+  color: var(--sunat-white);
+  box-shadow: 0 4px 18px 0 rgba(34,34,59,0.10);
+  transform: translateY(-2px) scale(1.04);
+}
+.auth-modal .modal-buttons .confirm:active {
+  transform: scale(0.98);
+  box-shadow: 0 2px 8px 0 rgba(34,34,59,0.08);
+}
+
+.auth-modal .error-message {
+  color: #d32f2f;
+  font-size: 1em;
+  margin-top: 8px;
+  text-align: left;
+  width: 100%;
+}

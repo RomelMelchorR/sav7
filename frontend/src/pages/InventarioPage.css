@@ -1,0 +1,284 @@
+﻿/* Unificación visual con módulos de cajas y documentos */
+@import '../pages/CajasPage.css';
+
+.inventario-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px 24px;
+  background: var(--sunat-white);
+  border-radius: 18px;
+  box-sizing: border-box;
+  border: 1.5px solid var(--sunat-gray-border);
+}
+[data-theme='dark'] .inventario-container {
+  background: var(--sunat-gray-dark);
+  border: 1.5px solid #232a4d;
+}
+.inventario-header {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--sunat-blue-dark);
+  margin: 0 0 16px 4px;
+  letter-spacing: 0.5px;
+  padding-right: 16px;
+}
+[data-theme='dark'] .inventario-header {
+  color: var(--sunat-blue-light);
+}
+.inventario-actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 16px;
+  padding: 0;
+  margin-left: 0;
+  margin-bottom: 16px;
+  margin-top: 8px;
+}
+.inventario-actions button {
+  background: var(--sunat-blue);
+  color: var(--sunat-white);
+  border: none;
+  border-radius: 8px;
+  padding: 0.9em 1.4em;
+  font-size: 1em;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.6em;
+  transition: background 0.18s, color 0.18s, box-shadow 0.18s, transform 0.18s;
+  box-shadow: none;
+  outline: none;
+  width: auto;
+  min-width: 120px;
+  max-width: 240px;
+  margin-left: 0;
+}
+.inventario-actions button + button {
+  margin-left: 48px !important;
+}
+.inventario-actions button:hover,
+.inventario-actions button:focus {
+  background: var(--sunat-blue-dark);
+  color: var(--sunat-white);
+  box-shadow: 0 4px 18px 0 rgba(34,34,59,0.10);
+  transform: translateY(-2px) scale(1.04);
+}
+.inventario-actions button:active {
+  transform: scale(0.98);
+  box-shadow: 0 2px 8px 0 rgba(34,34,59,0.08);
+}
+
+/* .modulo-filtros-panel styles are imported from CajasPage.css */
+.filtro-item {
+  display: flex;
+  flex-direction: column;
+}
+.filtro-item label {
+  font-size: 0.9em;
+  color: var(--sunat-blue);
+  font-weight: 600;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+[data-theme='dark'] .filtro-item label {
+  color: var(--sunat-blue-light);
+}
+.filtro-item input {
+  border: 1.5px solid var(--sunat-gray-border);
+  border-radius: 8px;
+  padding: 0.8em 1em;
+  font-size: 1em;
+  background: var(--sunat-white);
+  color: var(--sunat-black);
+  transition: all 0.2s ease-in-out;
+  width: 100%;
+  max-width: 420px;
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
+  outline: none;
+  min-width: 0;
+}
+[data-theme='dark'] .filtro-item input {
+  background: #181b24;
+  color: var(--sunat-white);
+  border-color: #3b4671;
+}
+.filtro-item input:focus {
+  border-color: var(--sunat-blue);
+  box-shadow: 0 0 0 3px rgba(57, 73, 171, 0.2);
+}
+.filtros-botones {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+  margin-top: 16px;
+}
+.filtros-botones button {
+  padding: 0.9em 2em;
+  font-size: 1em;
+  font-weight: 600;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.filtros-botones .buscar-btn {
+  background: var(--sunat-blue);
+  color: var(--sunat-white);
+}
+.filtros-botones .buscar-btn:hover {
+  background: var(--sunat-blue-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+.filtros-botones .limpiar-btn {
+  background: #E0E0E0;
+  color: #333;
+  border: 1px solid #ccc;
+}
+.filtros-botones .limpiar-btn:hover {
+  background: #d4d4d4;
+  border-color: #bbb;
+}
+[data-theme='dark'] .filtros-botones .limpiar-btn {
+  background: #4a5588;
+  color: var(--sunat-white);
+  border-color: #5c6bc0;
+}
+[data-theme='dark'] .filtros-botones .limpiar-btn:hover {
+  background: #5c6bc0;
+}
+
+/* ---- Tablas: ancho 95% + sticky header/col (Inventario) ---- */
+.modulo-table-container { width: 95%; max-width: 95%; margin-left: auto; margin-right: auto; }
+.modulo-table { table-layout: fixed; width: 95%; max-width: 95%; }
+.modulo-table thead th { position: sticky; top: 0; z-index: 3; background: var(--sunat-blue-dark); }
+[data-theme='dark'] .modulo-table thead th { background: var(--sunat-blue); }
+.modulo-table th:first-child, .modulo-table td:first-child { position: sticky; left: 0; z-index: 2; background: inherit; border-right: 1px solid var(--sunat-gray-border); }
+[data-theme='dark'] .modulo-table th:first-child, [data-theme='dark'] .modulo-table td:first-child { border-right: 1px solid #232a4d; }
+.modulo-table th:first-child { box-shadow: 2px 0 0 rgba(0,0,0,0.06); }
+[data-theme='dark'] .modulo-table th:first-child { box-shadow: 2px 0 0 rgba(0,0,0,0.3); }
+
+/* ==== Overrides para tabla: asegurar primera columna visible y evitar centrado ===== */
+.modulo-table-container {
+  display: block;              /* anula display:flex anterior */
+  justify-content: flex-start; /* por si otro selector lo aplica */
+  width: 95%;
+  max-width: 95vw;
+  margin: 12px auto;
+  overflow-x: auto;
+}
+
+.modulo-table {
+  table-layout: fixed;
+  width: 100%;
+  max-width: none;
+}
+
+.modulo-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 3;
+}
+
+.modulo-table th:first-child,
+.modulo-table td:first-child {
+  position: sticky;
+  left: 0;
+  z-index: 2;
+  background: inherit;
+}
+.modulo-table thead th:first-child { z-index: 5; left: 0; }
+
+/* ---- Inventario: centrar tabla al 95% del viewport y separar del buscador ---- */
+.inventario-container { overflow: visible; width: 100% !important; max-width: 100% !important; padding-left: 0; padding-right: 0; }
+.modulo-table-container {
+  position: static !important;
+  left: auto !important;
+  transform: none !important;
+  width: 95vw !important;
+  max-width: 95vw !important;
+  margin: 16px auto 24px auto !important; /* separación del cuadro de búsqueda (reducida para quitar el hueco) */
+  display: block !important;
+  overflow-x: auto;
+}
+.modulo-table { width: 100% !important; max-width: none !important; table-layout: fixed; margin: 0 auto !important; }
+
+/* ---- Inventario: ampliar columna de acciones y evitar cortes ---- */
+.modulo-table td.acciones,
+.modulo-table th:last-child,
+.modulo-table td:last-child {
+  width: 200px !important;  /* más espacio para botones */
+  white-space: nowrap;       /* evita saltos de línea en botones */
+}
+
+.modulo-table td.acciones button {
+  margin-right: 8px;
+}
+.modulo-table td.acciones button:last-child { margin-right: 0; }
+
+/* Columna de selección en Inventario */
+.modulo-table th:first-child, .modulo-table td:first-child { width: 48px !important; text-align: center; }
+.modulo-table td:first-child input[type="checkbox"] { transform: scale(1.1); }
+
+/* Barra compacta para totales, paginación y acciones en Inventario */
+.table-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  margin: 10px auto 6px;
+  max-width: 1100px;
+  background: var(--sunat-white);
+  border: 1px solid var(--sunat-gray-border);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+  flex-wrap: wrap;
+}
+[data-theme='dark'] .table-toolbar {
+  background: #0f1322;
+  border-color: #232a4d;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.28);
+}
+.toolbar-info {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  font-weight: 600;
+  color: var(--sunat-blue-dark);
+}
+[data-theme='dark'] .toolbar-info { color: var(--sunat-white); }
+.toolbar-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.page-chip {
+  padding: 6px 12px;
+  border-radius: 8px;
+  background: rgba(100,108,255,0.12);
+  color: var(--sunat-blue-dark);
+  font-weight: 600;
+}
+[data-theme='dark'] .page-chip { background: rgba(100,108,255,0.22); color: var(--sunat-white); }
+/* Botón de eliminar seleccionados en rojo */
+.bulk-delete {
+  background: #e04b4b !important;
+  color: #fff !important;
+}
+[data-theme='light'] .bulk-delete:hover { background: #c73a3a !important; }
+[data-theme='dark'] .bulk-delete { background: #c73a3a !important; }
+[data-theme='dark'] .bulk-delete:hover { background: #a93232 !important; }
+

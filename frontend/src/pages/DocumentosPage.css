@@ -1,0 +1,401 @@
+﻿/* Estilos del módulo de gestión de documentos, reutilizando el diseño de cajas */
+@import '../pages/CajasPage.css';
+
+/* Si necesitas personalizar algo específico para documentos, agrégalo aquí. Por defecto, hereda todo el diseño de cajas. */
+
+/* Ajuste de ancho máximo y centrado para el panel de filtros de documentos */
+.modulo-filtros-panel { max-width: 1100px; margin-left: auto; margin-right: auto; padding: 16px; gap: 16px 12px; }
+
+.documentos-editar,
+.documentos-crear {
+  max-width: 1100px;
+  margin: 24px auto;
+  background: var(--sunat-white);
+  border-radius: 16px;
+  padding: 20px;
+  border: 1px solid var(--sunat-gray-border);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+}
+[data-theme='dark'] .documentos-editar,
+[data-theme='dark'] .documentos-crear {
+  background: #111627;
+  border-color: #232a4d;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+}
+.documentos-editar h2,
+.documentos-crear h2 {
+  margin: 0 0 16px 0;
+  color: var(--sunat-blue-dark);
+}
+[data-theme='dark'] .documentos-editar h2,
+[data-theme='dark'] .documentos-crear h2 {
+  color: var(--sunat-white);
+}
+.documentos-editar > div,
+.documentos-crear > div {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 12px 16px;
+}
+.documentos-editar label,
+.documentos-crear label {
+  font-weight: 600;
+  color: var(--sunat-blue-dark);
+  display: block;
+  margin-bottom: 4px;
+}
+[data-theme='dark'] .documentos-editar label,
+[data-theme='dark'] .documentos-crear label {
+  color: var(--sunat-white);
+}
+.documentos-editar input,
+.documentos-editar textarea,
+.documentos-crear input,
+.documentos-crear textarea {
+  width: 100%;
+  border: 1.5px solid var(--sunat-gray-border);
+  border-radius: 8px;
+  padding: 0.65em 0.75em;
+  font-size: 0.95em;
+  background: var(--sunat-white);
+  color: var(--sunat-black);
+  box-sizing: border-box;
+}
+[data-theme='dark'] .documentos-editar input,
+[data-theme='dark'] .documentos-editar textarea,
+[data-theme='dark'] .documentos-crear input,
+[data-theme='dark'] .documentos-crear textarea {
+  background: #181b24;
+  color: var(--sunat-white);
+  border-color: #3b4671;
+}
+.documentos-form-grid .full-span {
+  grid-column: span 2;
+}
+.form-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  margin-top: 12px;
+}
+[data-theme='dark'] .form-actions button {
+  background: var(--sunat-blue);
+  color: var(--sunat-white);
+}
+.documentos-editar button,
+.documentos-crear button {
+  margin-top: 8px;
+  padding: 10px 16px;
+}
+
+.filtro-item input {
+  min-width: 0;
+  border: 1.5px solid var(--sunat-gray-border);
+  border-radius: 8px;
+  padding: 0.6em 0.8em;
+  font-size: 0.95em;
+  background: var(--sunat-white);
+  color: var(--sunat-black);
+  transition: all 0.2s ease-in-out;
+  width: 100%;
+  max-width: 360px;
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
+  outline: none;
+}
+[data-theme='dark'] .filtro-item input {
+  background: #181b24;
+  color: var(--sunat-white);
+  border-color: #3b4671;
+}
+.filtro-item input:focus {
+  border-color: var(--sunat-blue);
+  box-shadow: 0 0 0 3px rgba(57, 73, 171, 0.2);
+}
+
+/* Estilos para mensajes de importación */
+.import-message {
+  padding: 15px;
+  margin: 15px 0;
+  border-radius: 8px;
+  font-weight: 500;
+  position: relative;
+  animation: slideIn 0.3s ease-out;
+}
+
+.import-message.success {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.import-message.error {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+.import-message button {
+  transition: opacity 0.2s ease;
+}
+
+.import-message button:hover {
+  opacity: 0.7;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* -------- Tabla de resultados (Documentos) compacta y legible -------- */
+/* Evita el ensanchado excesivo de columnas y recorta texto con elipsis. */
+.modulo-table {
+  table-layout: fixed; /* Distribuye el ancho sin estirar celdas por contenido */
+}
+
+.modulo-table th,
+.modulo-table td {
+  padding: 0.4em 0.5em;
+  font-size: 0.88em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Anchos sugeridos por columna (ajusta seg�n tus encabezados reales) */
+.modulo-table th:nth-child(1), .modulo-table td:nth-child(1) { width: 56px; }   /* ID */
+.modulo-table th:nth-child(2), .modulo-table td:nth-child(2) { width: 120px; }  /* N° Doc */
+.modulo-table th:nth-child(3), .modulo-table td:nth-child(3) { width: 180px; }  /* Razón Social */
+.modulo-table th:nth-child(4), .modulo-table td:nth-child(4) { width: 110px; }  /* N° Caja */
+.modulo-table th:nth-child(5), .modulo-table td:nth-child(5) { width: 200px; }  /* Observaciones */
+.modulo-table th:nth-child(6), .modulo-table td:nth-child(6) { width: 120px; }  /* ID Inventario */
+.modulo-table th:nth-child(7), .modulo-table td:nth-child(7) { width: 120px; }  /* RUC */
+.modulo-table th:nth-child(8), .modulo-table td:nth-child(8) { width: 120px; }  /* Fecha */
+.modulo-table th:nth-child(9), .modulo-table td:nth-child(9) { width: 150px; }  /* Cod Org Act */
+.modulo-table th:nth-child(10), .modulo-table td:nth-child(10) { width: 150px; }/* Cod Org Ant */
+
+/* En pantallas peque�as, permite m�s altura de fila y wrap si lo prefieres */
+@media (max-width: 900px) {
+  .modulo-table th,
+  .modulo-table td { white-space: normal; }
+}
+
+/* -------- Ajuste fino de tabla: ocupar 95% del ancho + anchos por columna -------- */
+.modulo-table-container { width: 95%; max-width: 95%; margin-left: auto; margin-right: auto; }
+.modulo-table { table-layout: fixed; width: 95%; max-width: 95%; }
+.modulo-table th, .modulo-table td { padding: 0.4em 0.5em; font-size: 0.88em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+/* Mapeo sugerido para columnas habituales de ad_inventario_reg */
+.modulo-table th:nth-child(1),  .modulo-table td:nth-child(1)  { width: 60px; }
+.modulo-table th:nth-child(2),  .modulo-table td:nth-child(2)  { width: 90px; }
+.modulo-table th:nth-child(3),  .modulo-table td:nth-child(3)  { width: 110px; }
+.modulo-table th:nth-child(4),  .modulo-table td:nth-child(4)  { width: 100px; }
+.modulo-table th:nth-child(5),  .modulo-table td:nth-child(5)  { width: 110px; }
+.modulo-table th:nth-child(6),  .modulo-table td:nth-child(6)  { width: 70px; }
+.modulo-table th:nth-child(7),  .modulo-table td:nth-child(7)  { width: 110px; }
+.modulo-table th:nth-child(8),  .modulo-table td:nth-child(8)  { width: 110px; }
+.modulo-table th:nth-child(9),  .modulo-table td:nth-child(9)  { width: 80px; }
+.modulo-table th:nth-child(10), .modulo-table td:nth-child(10) { width: 140px; }
+.modulo-table th:nth-child(11), .modulo-table td:nth-child(11) { width: 150px; }
+.modulo-table th:nth-child(12), .modulo-table td:nth-child(12) { width: 220px; }
+.modulo-table th:nth-child(13), .modulo-table td:nth-child(13) { width: 130px; }
+.modulo-table th:nth-child(14), .modulo-table td:nth-child(14) { width: 120px; }
+.modulo-table th:nth-child(15), .modulo-table td:nth-child(15) { width: 220px; }
+.modulo-table th:nth-child(16), .modulo-table td:nth-child(16) { width: 110px; }
+.modulo-table th:nth-child(17), .modulo-table td:nth-child(17) { width: 110px; }
+.modulo-table th:nth-child(18), .modulo-table td:nth-child(18) { width: 110px; }
+.modulo-table th:nth-child(19), .modulo-table td:nth-child(19) { width: 160px; }
+.modulo-table th:nth-child(20), .modulo-table td:nth-child(20) { width: 160px; }
+.modulo-table th:nth-child(21), .modulo-table td:nth-child(21) { width: 120px; }
+@media (max-width: 900px) { .modulo-table th, .modulo-table td { white-space: normal; } }
+
+/* -------- Sticky header y primera columna (Documentos) -------- */
+/* Mantiene visible el encabezado y la primera columna al hacer scroll. */
+.modulo-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  background: var(--sunat-blue-dark);
+}
+[data-theme='dark'] .modulo-table thead th { background: var(--sunat-blue); }
+
+.modulo-table th:first-child,
+.modulo-table td:first-child {
+  position: sticky;
+  left: 0;
+  z-index: 2;
+  background: inherit; /* preserva el zebra striping */
+  border-right: 1px solid var(--sunat-gray-border);
+}
+[data-theme='dark'] .modulo-table th:first-child,
+[data-theme='dark'] .modulo-table td:first-child {
+  border-right: 1px solid #232a4d;
+}
+
+/* Separador sutil cuando se desplaza horizontalmente */
+.modulo-table th:first-child { box-shadow: 2px 0 0 rgba(0,0,0,0.06); }
+[data-theme='dark'] .modulo-table th:first-child { box-shadow: 2px 0 0 rgba(0,0,0,0.3); }
+
+/* -------- Overrides de tabla Documentos: alineación y sticky visibles -------- */
+/* Evita centrado por flex y asegura que la primera columna se vea */
+.modulo-table-container {
+  display: block;              /* anula display:flex heredado */
+  justify-content: flex-start; /* por si otro selector la hace flex */
+  margin: 12px auto;
+  width: 95%;                  /* relativo al contenedor/pantalla */
+  max-width: 95vw;             /* nunca superar viewport */
+  overflow-x: auto;            /* scroll horizontal cuando sea necesario */
+}
+
+.modulo-table {
+  table-layout: fixed;
+  width: 100%;                 /* ocupa el ancho del contenedor */
+  max-width: none;
+}
+
+/* Primera columna sticky con prioridad de apilamiento correcta */
+.modulo-table th:first-child,
+.modulo-table td:first-child {
+  position: sticky;
+  left: 0;
+  z-index: 2;
+  background: inherit;
+}
+.modulo-table thead th { position: sticky; top: 0; z-index: 3; }
+.modulo-table thead th:first-child { z-index: 5; left: 0; }
+
+/* ---- Documentos: centrar la tabla respecto a la pantalla y separar del buscador ---- */
+/* Permite que la tabla salga del contenedor y se centre a 95vw del viewport */
+.modulo-container { overflow: visible; }
+
+.modulo-table-container {
+  width: 95vw;              /* 95% del ancho de la pantalla */
+  max-width: 95vw;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%); /* centrar respecto al viewport */
+  margin-top: 28px;         /* separación del cuadro de búsqueda */
+  margin-bottom: 24px;
+}
+
+.modulo-table { width: 100%; max-width: none; }
+
+/* ---- Documentos: expandir contenedor para permitir tabla al 95% del viewport ---- */
+.modulo-container {
+  width: 100% !important;
+  max-width: 100% !important;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+/* Tabla centrada al 95% de la pantalla */
+.modulo-table-container {
+  width: 95% !important;
+  max-width: 95vw !important;
+  margin: 28px auto 24px auto !important; /* separación del buscador */
+  display: block;
+  overflow-x: auto;
+}
+
+.modulo-table { width: 100% !important; max-width: none !important; table-layout: fixed; }
+
+/* ---- Centrado real de la tabla (override final) ---- */
+.modulo-table-container {
+  position: static !important;
+  left: auto !important;
+  transform: none !important;
+  width: 95vw !important;
+  max-width: 95vw !important;
+  margin: 32px auto 24px auto !important; /* centrado absoluto con auto margins */
+  display: block !important;
+}
+
+.modulo-table { width: 100% !important; margin: 0 auto !important; }
+
+/* Barra compacta para totales, paginación y acciones en Documentos */
+.table-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  margin: 10px auto 6px;
+  max-width: 1100px;
+  background: var(--sunat-white);
+  border: 1px solid var(--sunat-gray-border);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+  flex-wrap: wrap;
+}
+[data-theme='dark'] .table-toolbar {
+  background: #0f1322;
+  border-color: #232a4d;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.28);
+}
+.toolbar-info {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  font-weight: 600;
+  color: var(--sunat-blue-dark);
+}
+[data-theme='dark'] .toolbar-info {
+  color: var(--sunat-white);
+}
+.toolbar-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.page-chip {
+  padding: 6px 12px;
+  border-radius: 8px;
+  background: rgba(100,108,255,0.12);
+  color: var(--sunat-blue-dark);
+  font-weight: 600;
+}
+[data-theme='dark'] .page-chip {
+  background: rgba(100,108,255,0.22);
+  color: var(--sunat-white);
+}
+
+/* Botón de eliminar seleccionados en rojo (paleta) */
+.bulk-delete {
+  background: #e04b4b !important;
+  color: #fff !important;
+}
+[data-theme='light'] .bulk-delete:hover { background: #c73a3a !important; }
+[data-theme='dark'] .bulk-delete { background: #c73a3a !important; }
+[data-theme='dark'] .bulk-delete:hover { background: #a93232 !important; }
+
+/* Acciones de cabecera (crear/importar/descargar) ordenadas */
+.doc-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 4px;
+}
+.doc-actions button {
+  min-width: 170px;
+  height: 52px;
+  border-radius: 10px;
+  padding: 12px 18px;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+}
+[data-theme='dark'] .doc-actions button {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.28);
+}
+.doc-actions input[type="file"] {
+  display: none;
+}
